@@ -1,0 +1,15 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <view class="header">
+  <text class="description">提供专业图片处理服务，支持初始化/压缩/抠图/识别四大功能</text>
+</view>
+
+    <view class="function-buttons">
+      <button class="btn" bindtap="navigateToImageProcessing" data-type="init">证件照制作</button>
+      <button class="btn" bindtap="navigateToImageProcessing" data-type="compress">图片压缩</button>
+      <button class="btn" bindtap="navigateToImageProcessing" data-type="cut">智能抠图</button>
+      <button class="btn" bindtap="navigateToImageProcessing" data-type="recognize">图片识别</button>
+    </view>
+  </view>
+</scroll-view>

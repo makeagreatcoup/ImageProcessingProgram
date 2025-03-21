@@ -1,0 +1,19 @@
+<!--recognize.wxml-->
+<view class="container">
+  <view class="preview-area" wx:if="{{imagePath}}">
+    <image src="{{imagePath}}" mode="widthFix" class="preview-image"/>
+  </view>
+
+  <view class="recognition-result" wx:if="{{result}}">
+    <view class="result-title">识别结果：</view>
+    <view class="result-content">{{result}}</view>
+  </view>
+
+  <view class="btn-group">
+    <button bindtap="chooseImage" class="btn">{{imagePath ? '重新选择' : '选择图片'}}</button>
+    <button bindtap="recognizeImage" class="btn" wx:if="{{imagePath && !result}}">开始识别</button>
+    <button bindtap="saveResult" class="btn" wx:if="{{result}}">保存结果</button>
+  </view>
+
+  <view class="error-msg" wx:if="{{errorMsg}}">{{errorMsg}}</view>
+</view>

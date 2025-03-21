@@ -1,0 +1,19 @@
+<!--compress.wxml-->
+<view class="container">
+  <canvas canvas-id="previewCanvas" type="2d" class="hidden-canvas"/>
+  <view class="preview-area" wx:if="{{imagePath}}">
+    <image src="{{imagePath}}" mode="widthFix" class="preview-image"/>
+  </view>
+
+  <view class="btn-group">
+    <button bindtap="chooseImage" class="btn">{{imagePath ? '重新选择' : '选择图片'}}</button>
+    <slider value="{{compressRate}}" bindchange="handleSliderChange" min="20" max="100" show-value/>
+    <text class="rate-text">压缩质量：{{compressRate}}%</text>
+        <view class="size-info">
+      <text>原始大小：{{originalSize}}</text>
+      <text>压缩后大小：{{compressedSize}}</text>
+    </view>
+    <button bindtap="startCompress" class="btn" disabled="{{compressed}}">开始压缩</button>
+    <button bindtap="saveImage" class="btn" disabled="{{!compressed}}">保存图片</button>
+  </view>
+</view>

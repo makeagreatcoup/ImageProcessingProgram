@@ -1,0 +1,15 @@
+<!--cut.wxml-->
+<view class="container">
+  <view class="preview-area" wx:if="{{imagePath}}">
+    <image src="{{imagePath}}" mode="widthFix" class="preview-image"/>
+    <image wx:if="{{processedImagePath}}" src="{{processedImagePath}}" mode="widthFix" class="preview-image processed"/>
+  </view>
+
+  <view class="btn-group">
+    <button bindtap="chooseImage" class="btn">{{imagePath ? '重新选择' : '选择图片'}}</button>
+    <button bindtap="removeBackground" class="btn" wx:if="{{imagePath && !processedImagePath}}">开始抠图</button>
+    <button bindtap="saveImage" class="btn" wx:if="{{processedImagePath}}">保存图片</button>
+  </view>
+
+  <view class="error-msg" wx:if="{{errorMsg}}">{{errorMsg}}</view>
+</view>

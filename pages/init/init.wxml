@@ -1,0 +1,46 @@
+<!--init.wxml-->
+<view class="container">
+  <!-- 证件照尺寸选择 -->
+  <view class="size-selector">
+    <text class="section-title">选择证件照尺寸：</text>
+    <radio-group bindchange="onSizeChange" class="size-group">
+      <label class="size-item" wx:for="{{photoSizes}}" wx:key="name">
+        <radio value="{{item.name}}" checked="{{selectedSize === item.name}}"/>
+        <text>{{item.name}} ({{item.width}}x{{item.height}}mm)</text>
+      </label>
+    </radio-group>
+  </view>
+
+  <!-- 背景色选择 -->
+  <view class="color-selector">
+    <text class="section-title">选择背景颜色：</text>
+    <view class="color-group">
+      <view
+        wx:for="{{bgColors}}" 
+        wx:key="*this"
+        class="color-item {{selectedColor === item ? 'selected' : ''}}"
+        style="background-color: {{item}}"
+        bindtap="onColorSelect"
+        data-color="{{item}}"
+      ></view>
+    </view>
+  </view>
+
+  <!-- 图片预览区域 -->
+  <view class="preview-area" wx:if="{{imagePath}}">
+    <image src="{{imagePath}}" mode="aspectFit" class="preview-image"/>
+    <image wx:if="{{processedImagePath}}" src="{{processedImagePath}}" mode="aspectFit" class="preview-image processed"/>
+  </view>
+
+  <!-- 操作按钮组 -->
+  <view class="btn-group">
+    <button bindtap="chooseImage" class="btn">{{imagePath ? '重新选择' : '选择图片'}}</button>
+    <button bindtap="processImage" class="btn" wx:if="{{imagePath && !processedImagePath}}">生成证件照</button>
+    <button bindtap="saveImage" class="btn" wx:if="{{processedImagePath}}">保存图片</button>
+  </view>
+
+  <view class="error-msg" wx:if="{{errorMsg}}">{{errorMsg}}</view>
+  
+  <!-- 隐藏的画布组件 -->
+  <canvas canvas-id="photoCanvas" class="hidden-canvas"></canvas>
+</view>
